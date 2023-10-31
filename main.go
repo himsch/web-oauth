@@ -65,12 +65,12 @@ const oauthGoogleUrlAPI = "https://www.googleapis.com/oauth2/v2/userinfo?access_
 func getGoogleUserInfo(code string) ([]byte, error) {
 	token, err := googleOauthConfig.Exchange(context.Background(), code)
 	if err != nil {
-		return nil, fmt.Errorf("Failed to Exchange %s\n", err.Error())
+		return nil, fmt.Errorf("failed to Exchange %s", err.Error())
 	}
 
 	resp, err := http.Get(oauthGoogleUrlAPI + token.AccessToken)
 	if err != nil {
-		return nil, fmt.Errorf("Failed to Get UserInfo %s\n", err.Error())
+		return nil, fmt.Errorf("failed to Get UserInfo %s", err.Error())
 	}
 
 	return io.ReadAll(resp.Body)
